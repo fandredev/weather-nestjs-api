@@ -1,0 +1,42 @@
+{
+  "workbench.iconTheme": "material-icon-theme",
+  "typescript.suggestionActions.enabled": true,
+  "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "editor.tabSize": 2,
+  "editor.detectIndentation": true,
+  "editor.fontSize": 15,
+  "explorer.compactFolders": false,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "typescript.suggest.autoImports": true,
+  "editor.suggestSelection": "first",
+  "editor.fontFamily": "Fira Code",
+  "editor.fontLigatures": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // Prettier
+  "prettier.singleQuote": true,
+
+  "files.autoSave": "off",
+  "editor.formatOnSave": true,
+  "eslint.run": "onSave",
+  "emmet.showAbbreviationSuggestions": true,
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  },
+  "git.ignoreRebaseWarning": true,
+  "explorer.fileNesting.patterns": {
+    "*.ts": "${capture}.js",
+    "*.tsx": "${capture}.ts",
+    "tsconfig.json": "tsconfig.*.json",
+    "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb"
+  },
+  "workbench.colorTheme": "Dracula Theme"
+}
