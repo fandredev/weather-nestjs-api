@@ -1,7 +1,7 @@
 ## Tecnologias usadas
 
   <a href="https://go-skill-icons.vercel.app/">
-    <img src="https://go-skill-icons.vercel.app/api/icons?i=typescript,nodejs,git,yarn,jest,githubactions" alt="typescript,nodejs,git,yarn,jest,githubactions" />
+    <img src="https://go-skill-icons.vercel.app/api/icons?i=typescript,nodejs,prisma,git,yarn,jest,githubactions" alt="ypescript,nodejs,prisma,git,yarn,jest,githubactions" />
   </a>
 
 <br>
@@ -21,9 +21,8 @@
 2. Preencha as variáveis de ambiente com os valores necessários:
 
    - `DATABASE_URL`: Caminho do banco de dados SQLite. Use o valor padrão `file:./dev.db`.
-   - `APP_PORT`: Porta na qual a aplicação será executada. Exemplo: `3000`.
 
-3. Instale as dependências (Usei o yarn, mas, sinta-se livre para usar o npm):
+3. Instale as dependências (Usei o pnpm, mas, sinta-se livre para usar o npm/yarn):
 
    ```bash
    npm install

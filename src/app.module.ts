@@ -18,6 +18,8 @@ import * as Joi from 'joi';
           .required()
           .valid('development', 'production', 'staging', 'test')
           .default('development'),
+
+        DATABASE_URL: Joi.string().required(),
       }),
     }),
     UsersModule,
