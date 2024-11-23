@@ -1,17 +1,44 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
+import { PrismaService } from 'src/prisma.service';
 
 @Injectable()
 export class UsersService {
+  constructor(private prisma: PrismaService) {}
+
   create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+    if (!createUserDto) {
+      return new BadRequestException('User data is required');
+    }
+
+    return this.prisma.user.create({
+      data: {
+        email: createUserDto.email,
+        username: createUserDto.username,
+        password: createUserDto.password,
+      },
+    });
   }
 
   findAll() {
-    return `This action returns all users`;
+    return this.prisma.user.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: string) {
+    if (!id) {
+      return new BadRequestException('User ID is required');
+    }
+
+    const existsId = await this.prisma.user.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    if (!existsId) {
+      return new BadRequestException('User ID does not exist');
+    }
+
+    return existsId;
   }
 }
