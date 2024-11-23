@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { UsersModule } from './users/users.module';
 import envConfiguration from './config/env-configuration';
 import * as Joi from 'joi';
 
@@ -19,6 +20,7 @@ import * as Joi from 'joi';
           .default('development'),
       }),
     }),
+    UsersModule,
   ],
 })
 export class AppModule {}
