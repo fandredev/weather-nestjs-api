@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 import envConfiguration from './config/env-configuration';
 import * as Joi from 'joi';
 
@@ -23,6 +24,7 @@ import * as Joi from 'joi';
       }),
     }),
     UsersModule,
+    AuthModule,
   ],
 })
 export class AppModule {}
