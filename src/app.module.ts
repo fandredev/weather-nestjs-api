@@ -3,7 +3,6 @@ import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import envConfiguration from './config/env-configuration';
 import * as Joi from 'joi';
-import { PrismaService } from './prisma.service';
 
 @Module({
   imports: [
@@ -26,6 +25,5 @@ import { PrismaService } from './prisma.service';
     }),
     UsersModule,
   ],
-  providers: [PrismaService],
 })
 export class AppModule {}
