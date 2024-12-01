@@ -13,11 +13,14 @@ import * as Joi from 'joi';
       validationSchema: Joi.object({
         APP_PORT: Joi.number()
           .required()
+          .description('Port')
           .default(process.env.APP_PORT || 3000),
         NODE_ENV: Joi.string()
           .required()
+          .description('Environment')
           .valid('development', 'production', 'staging', 'test')
           .default('development'),
+        DATABASE_URL: Joi.string().required().description('Database URL'),
       }),
     }),
     UsersModule,

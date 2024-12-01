@@ -76,3 +76,11 @@ npm run test:watch
 npm run test:cov
 
 ```
+
+## View Prisma Tables
+
+```bash
+# Servidor padrão
+npx prisma studio
+
+```
