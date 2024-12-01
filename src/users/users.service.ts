@@ -6,25 +6,25 @@ import { PrismaService } from 'src/prisma.service';
 export class UsersService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  create(createUserDto: CreateUserDto) {
+  createUser(createUserDto: CreateUserDto) {
     return 'This action adds a new user';
   }
 
-  findAll() {
+  findUsers() {
     return `This action returns all users`;
   }
 
   async findOne(id: number) {
-    const findId = await this.prismaService.user.findUnique({
+    const existsUsers = await this.prismaService.user.findUnique({
       where: {
         id: id,
       },
     });
 
-    if (!findId) {
-      return new BadRequestException('User not found');
+    if (!existsUsers) {
+      throw new BadRequestException('Usuário não encontrado');
     }
 
-    return findId;
+    return existsUsers;
   }
 }
