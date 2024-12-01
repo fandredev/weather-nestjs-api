@@ -34,7 +34,7 @@ describe(`${UsersController.name}`, () => {
     expect(usersService).toBeDefined();
   });
 
-  it(`should call #${UsersService.prototype.findOne.name} when route is called`, async () => {
+  it(`should call #${UsersService.prototype.findOne.name} method when route is called`, async () => {
     const user: User = {
       id: 1,
       email: faker.internet.email(),

@@ -33,7 +33,7 @@ describe(`${UsersService.name}`, () => {
   });
 
   describe(`Get Especific User`, () => {
-    it(`should get a user successfully when ${UsersService.prototype.findOne.name} when mock returns a user`, async () => {
+    it(`should get a user successfully when #${UsersService.prototype.findOne.name} method when mock returns a user`, async () => {
       const userId = 1;
 
       const user: User = {
@@ -54,7 +54,7 @@ describe(`${UsersService.name}`, () => {
       });
     });
 
-    it(`should throw an error when ${UsersService.prototype.findOne.name} is called and user does not exist`, async () => {
+    it(`should throw an error when #${UsersService.prototype.findOne.name} method is called and user does not exist`, async () => {
       const userId = 1;
       jest.spyOn(prismaService.user, 'findUnique').mockResolvedValue(null);
 
