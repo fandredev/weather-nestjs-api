@@ -4,12 +4,17 @@ import { UsersService } from './users.service';
 import { PrismaService } from 'src/prisma.service';
 import { User } from '@prisma/client';
 import { faker } from '@faker-js/faker/.';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 describe(`${UsersController.name}`, () => {
   let controller: UsersController;
   let usersService: UsersService;
+  let mockAuthGuard: any;
 
   beforeEach(async () => {
+    mockAuthGuard = {
+      canActivate: jest.fn(),
+    };
     const module: TestingModule = await Test.createTestingModule({
       controllers: [UsersController],
       providers: [
@@ -23,7 +28,10 @@ describe(`${UsersController.name}`, () => {
           },
         },
       ],
-    }).compile();
+    })
+      .overrideGuard(AuthGuard)
+      .useValue(mockAuthGuard)
+      .compile();
 
     controller = module.get<UsersController>(UsersController);
     usersService = module.get<UsersService>(UsersService);

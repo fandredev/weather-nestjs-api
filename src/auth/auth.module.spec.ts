@@ -19,7 +19,7 @@ describe(`${AuthModule.name}`, () => {
         JwtModule.register({
           global: true,
           secret: 'test-secret',
-          signOptions: { expiresIn: '7d' },
+          signOptions: { expiresIn: '1d' },
         }),
         UsersModule,
       ],
