@@ -3,12 +3,34 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import generateRandomToken from './jwt/utils/generate-random-token';
 import { faker } from '@faker-js/faker/.';
+import { AuthGuard } from './auth.guard';
+import { ExecutionContext } from '@nestjs/common';
+
+// const mockAuthGuard = {
+//   canActivate: jest.fn((context: ExecutionContext) => {
+//     const request = context.switchToHttp().getRequest();
+//     request.user = {
+//       id: 1,
+//       name: faker.person.firstName(),
+//       email: faker.internet.email(),
+//       password: faker.internet.password(),
+//       createdAt: faker.date.recent(),
+//       updatedAt: new Date(),
+//     };
+//     return true;
+//   }),
+// };
 
 describe(`${AuthController.name}`, () => {
   let controller: AuthController;
   let authService: AuthService;
+  let mockAuthGuard: any;
 
   beforeEach(async () => {
+    mockAuthGuard = {
+      canActivate: jest.fn(),
+    };
+
     const module: TestingModule = await Test.createTestingModule({
       controllers: [AuthController],
       providers: [
@@ -19,7 +41,10 @@ describe(`${AuthController.name}`, () => {
           },
         },
       ],
-    }).compile();
+    })
+      .overrideGuard(AuthGuard)
+      .useValue(mockAuthGuard)
+      .compile();
 
     controller = module.get<AuthController>(AuthController);
     authService = module.get<AuthService>(AuthService);
@@ -30,7 +55,7 @@ describe(`${AuthController.name}`, () => {
     expect(authService).toBeDefined();
   });
 
-  describe(`Tests for #${AuthService.prototype.signIn.name} method`, () => {
+  describe(`Tests for #${AuthController.prototype.signIn.name} method`, () => {
     it(`should call #${AuthService.prototype.signIn.name} and return the access_token to user`, async () => {
       const generatedRandomToken = generateRandomToken();
 
@@ -45,6 +70,33 @@ describe(`${AuthController.name}`, () => {
 
       expect(authService.signIn).toHaveBeenCalledWith(1, expect.any(String));
       expect(signIn).toEqual({ access_token: generatedRandomToken });
+    });
+  });
+
+  describe(`Tests for #${AuthController.prototype.getMe.name} method`, () => {
+    it('should return the data user when user is not authenticated', async () => {
+      mockAuthGuard.canActivate.mockImplementation(
+        (context: ExecutionContext) => {
+          const request = context.switchToHttp().getRequest();
+          request.user = { id: 1, username: faker.person.firstName() };
+          return true;
+        },
+      );
+
+      const jwtReturnUserLogged = {
+        sub: 1,
+        name: faker.person.firstName(),
+        iat: Date.now(),
+        exp: Date.now(),
+      };
+
+      const request = {
+        user: jwtReturnUserLogged,
+      };
+
+      const profileData = await controller.getMe(request);
+
+      expect(profileData).toEqual(jwtReturnUserLogged);
     });
   });
 });
