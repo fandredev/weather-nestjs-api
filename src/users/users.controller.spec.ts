@@ -34,6 +34,33 @@ describe(`${UsersController.name}`, () => {
     expect(usersService).toBeDefined();
   });
 
+  it(`should call #${UsersService.prototype.findUsers.name} method when route is called`, async () => {
+    const users: User[] = [
+      {
+        id: 1,
+        email: faker.internet.email(),
+        name: faker.person.firstName(),
+        createdAt: faker.date.recent(),
+        password: faker.internet.password(),
+        updatedAt: new Date(),
+      },
+      {
+        id: 2,
+        email: faker.internet.email(),
+        name: faker.person.firstName(),
+        createdAt: faker.date.recent(),
+        password: faker.internet.password(),
+        updatedAt: new Date(),
+      },
+    ];
+
+    jest.spyOn(usersService, 'findUsers').mockResolvedValue(users);
+    const getUsersResult = await controller.findUsers();
+
+    expect(getUsersResult).toEqual(users);
+    expect(usersService.findUsers).toHaveBeenCalled();
+  });
+
   it(`should call #${UsersService.prototype.findOne.name} method when route is called`, async () => {
     const user: User = {
       id: 1,

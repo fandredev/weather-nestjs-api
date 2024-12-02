@@ -1,17 +1,12 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
 import { PrismaService } from 'src/prisma.service';
 
 @Injectable()
 export class UsersService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  createUser(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
-  }
-
-  findUsers() {
-    return `This action returns all users`;
+  async findUsers() {
+    return await this.prismaService.user.findMany();
   }
 
   async findOne(id: number) {

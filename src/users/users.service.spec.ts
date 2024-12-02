@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UsersService } from './users.service';
 import { PrismaService } from 'src/prisma.service';
 import { User } from '@prisma/client';
-import { faker } from '@faker-js/faker/.';
+import { faker } from '@faker-js/faker';
 
 describe(`${UsersService.name}`, () => {
   let service: UsersService;
@@ -17,6 +17,7 @@ describe(`${UsersService.name}`, () => {
           useValue: {
             user: {
               findUnique: jest.fn(),
+              findMany: jest.fn(),
             },
           },
         },
@@ -30,6 +31,35 @@ describe(`${UsersService.name}`, () => {
   it('services should be defined when module testing is created and compiled', () => {
     expect(service).toBeDefined();
     expect(prismaService).toBeDefined();
+  });
+
+  describe(`Get all users`, () => {
+    it(`should get all users successfully when #${UsersService.prototype.findUsers.name} method when mock returns users`, async () => {
+      const users: User[] = [
+        {
+          id: 1,
+          email: faker.internet.email(),
+          name: faker.person.firstName(),
+          password: faker.internet.password(),
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          id: 2,
+          email: faker.internet.email(),
+          name: faker.person.firstName(),
+          password: faker.internet.password(),
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ];
+
+      jest.spyOn(prismaService.user, 'findMany').mockResolvedValue(users);
+      const result = await service.findUsers();
+
+      expect(result).toEqual(users);
+      expect(prismaService.user.findMany).toHaveBeenCalled();
+    });
   });
 
   describe(`Get Especific User`, () => {
