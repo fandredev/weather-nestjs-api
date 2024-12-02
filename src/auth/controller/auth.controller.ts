@@ -8,9 +8,9 @@ import {
   Request,
   UseGuards,
 } from '@nestjs/common';
-import { AuthService } from './auth.service';
 import Users from 'src/users/interfaces/User';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from '../auth.guard';
+import { AuthService } from '../services/auth.service';
 
 @Controller('auth')
 export class AuthController {

@@ -1,10 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthService } from './auth.service';
 import { UsersService } from 'src/users/users.service';
-import { AuthJwtService } from './jwt/jwt.service';
 import { PrismaService } from 'src/prisma.service';
 import { faker } from '@faker-js/faker';
-import generateRandomToken from './jwt/utils/generate-random-token';
+import { AuthJwtService } from '../jwt/jwt.service';
+import generateRandomToken from '../jwt/utils/generate-random-token';
 
 describe(`${AuthService.name}`, () => {
   let authService: AuthService;

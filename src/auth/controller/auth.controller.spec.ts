@@ -1,10 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AuthController } from './auth.controller';
-import { AuthService } from './auth.service';
-import generateRandomToken from './jwt/utils/generate-random-token';
+import generateRandomToken from '../jwt/utils/generate-random-token';
 import { faker } from '@faker-js/faker/.';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from '../auth.guard';
 import { ExecutionContext } from '@nestjs/common';
+import { AuthService } from '../services/auth.service';
+import { AuthController } from './auth.controller';
 
 // const mockAuthGuard = {
 //   canActivate: jest.fn((context: ExecutionContext) => {
