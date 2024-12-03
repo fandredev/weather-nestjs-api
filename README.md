@@ -67,7 +67,6 @@ npm run start:dev
 ## Para rodar os testes
 
 ```bash
-# Servidor padrão
 npm run test
 
 # Escutando alterações dos arquivos
@@ -77,20 +76,17 @@ npm run test:watch
 ## Cobertura de testes
 
 ```bash
-# Servidor padrão
 npm run test:cov
 ```
 
 ## Ver tabelas no prisma
 
 ```bash
-# Servidor padrão
 npx prisma studio
 ```
 
 ## Documentação das rotas
 
 ```bash
-# Servidor padrão
 open http://localhost:3000/api/
 ```
