@@ -14,9 +14,11 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { AuthGuard } from 'src/auth/auth.guard';
+import { SkipThrottle } from '@nestjs/throttler';
 
 @Controller('users')
 @ApiTags('Users')
+@SkipThrottle()
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
