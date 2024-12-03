@@ -23,8 +23,8 @@ import { SignInDto } from '../dto/sign-in.dto';
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
-  // TODO: Preciso fazer signIn pelo email do usuário (O que ele vai lembrar, HOJE ESTA SENDO FEITO PELO ID, Algo que ele não vai lembrar)
 
+  @Post('login')
   @Public()
   @ApiOperation({
     summary: 'Sign in the application',
@@ -52,11 +52,13 @@ export class AuthController {
     },
   })
   @HttpCode(HttpStatus.OK)
-  @Post('login')
   signIn(@Body() signInDto: SignInDto) {
     return this.authService.signIn(signInDto.email, signInDto.password);
   }
 
+  @Get('profile')
+  @UseGuards(AuthGuard)
+  @ApiBearerAuth()
   @ApiOperation({
     summary: 'Get information about the user',
   })
@@ -81,9 +83,6 @@ export class AuthController {
       statusCode: HttpStatus.UNAUTHORIZED,
     },
   })
-  @ApiBearerAuth()
-  @UseGuards(AuthGuard)
-  @Get('profile')
   getMe(@Request() req) {
     return req.user;
   }

@@ -11,9 +11,9 @@ import WeatherGeolocationDTO from '../dto/weather.dto';
 
 @Injectable()
 export class WeatherService {
-  private apiKey: string;
-  private baseUrl: string;
-  private logger = new Logger(WeatherService.name);
+  private readonly apiKey: string;
+  private readonly baseUrl: string;
+  private readonly logger = new Logger(WeatherService.name);
 
   constructor(
     private readonly configService: ConfigService,

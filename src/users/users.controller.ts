@@ -21,6 +21,8 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Find all users',
   })
@@ -47,12 +49,13 @@ export class UsersController {
       statusCode: HttpStatus.UNAUTHORIZED,
     },
   })
-  @UseGuards(AuthGuard)
-  @ApiBearerAuth()
   findUsers() {
     return this.usersService.findUsers();
   }
 
+  @Get(':id')
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard)
   @ApiOperation({
     summary: 'Find a user by ID',
   })
@@ -77,9 +80,6 @@ export class UsersController {
       statusCode: HttpStatus.UNAUTHORIZED,
     },
   })
-  @UseGuards(AuthGuard)
-  @ApiBearerAuth()
-  @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.usersService.findOneById(id);
   }

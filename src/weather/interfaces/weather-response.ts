@@ -11,44 +11,44 @@ export interface ResponseGeolocation {
 
 export interface ResponseWeatherData {
   coord: {
-    lon: number; // Longitude
-    lat: number; // Latitude
+    lon: number;
+    lat: number;
   };
   weather: Array<{
-    id: number; // Weather condition ID
-    main: string; // Main weather (e.g., Clouds, Rain)
-    description: string; // Weather description (e.g., broken clouds)
-    icon: string; // Icon code
+    id: number;
+    main: string;
+    description: string;
+    icon: string;
   }>;
-  base: string; // Base station
+  base: string;
   main: {
-    temp: number; // Current temperature in Kelvin
-    feels_like: number; // Feels-like temperature in Kelvin
-    temp_min: number; // Minimum temperature in Kelvin
-    temp_max: number; // Maximum temperature in Kelvin
-    pressure: number; // Atmospheric pressure in hPa
-    humidity: number; // Humidity in %
-    sea_level?: number; // Atmospheric pressure at sea level in hPa
-    grnd_level?: number; // Atmospheric pressure at ground level in hPa
+    temp: number;
+    feels_like: number;
+    temp_min: number;
+    temp_max: number;
+    pressure: number;
+    humidity: number;
+    sea_level?: number;
+    grnd_level?: number;
   };
-  visibility: number; // Visibility in meters
+  visibility: number;
   wind: {
-    speed: number; // Wind speed in m/s
-    deg: number; // Wind direction in degrees
+    speed: number;
+    deg: number;
   };
   clouds: {
-    all: number; // Cloudiness in %
+    all: number;
   };
-  dt: number; // Data calculation time (UNIX timestamp)
+  dt: number;
   sys: {
-    type?: number; // Internal parameter
-    id?: number; // Internal parameter
-    country: string; // Country code
-    sunrise: number; // Sunrise time (UNIX timestamp)
-    sunset: number; // Sunset time (UNIX timestamp)
+    type?: number;
+    id?: number;
+    country: string;
+    sunrise: number;
+    sunset: number;
   };
-  timezone: number; // Timezone offset in seconds
-  id: number; // City ID
-  name: string; // City name
-  cod: number; // HTTP response code
+  timezone: number;
+  id: number;
+  name: string;
+  cod: number;
 }
