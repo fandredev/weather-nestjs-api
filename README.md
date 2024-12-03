@@ -1,7 +1,7 @@
 ## Tecnologias usadas
 
   <a href="https://go-skill-icons.vercel.app/">
-    <img src="https://go-skill-icons.vercel.app/api/icons?i=typescript,nodejs,git,yarn,jest,githubactions,swagger" alt="typescript,nodejs,git,yarn,jest,githubactions,swagger" />
+    <img src="https://go-skill-icons.vercel.app/api/icons?i=typescript,nodejs,nestjs,git,yarn,jest,githubactions,swagger" alt="typescript,nodejs,nestjs,git,yarn,jest,githubactions,swagger" />
   </a>
 
 <br>

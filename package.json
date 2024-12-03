@@ -1,8 +1,20 @@
 {
   "name": "api-weather",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "An API using NestJS + Jest to consume the OpenWeatherAPI.",
+  "author": {
+    "email": "profissionalf.andre@gmail.com",
+    "name": "Felipe André",
+    "url": "https://developer-felipe-andre.vercel.app/"
+  },
+  "bugs": {
+    "email": "profissionalf.andre@gmail.com",
+    "url": "https://github.com/fandredev/weather-nestjs-api/issues/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fandredev/weather-nestjs-api"
+  },
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -28,10 +40,12 @@
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/swagger": "^8.0.7",
+    "@nestjs/throttler": "^6.2.1",
     "@prisma/client": "^6.0.0",
     "axios": "^1.7.8",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
+    "helmet": "^8.0.0",
     "joi": "^17.13.3",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1"
