@@ -10,8 +10,9 @@ export class AuthService {
     private authJwtService: AuthJwtService,
   ) {}
 
-  async signIn(userId: number, pass: string) {
-    const user = await this.usersService.findOne(userId);
+  async signIn(email: string, pass: string) {
+    const id = await this.usersService.findOneByEmail(email);
+    const user = await this.usersService.findOneById(id);
     if (user?.password !== pass) {
       throw new UnauthorizedException(
         'The email or password you entered is incorrect',

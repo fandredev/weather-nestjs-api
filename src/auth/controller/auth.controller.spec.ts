@@ -63,12 +63,17 @@ describe(`${AuthController.name}`, () => {
         access_token: generatedRandomToken,
       });
 
+      const email = faker.internet.email();
+
       const signIn = await controller.signIn({
-        id: 1,
+        email,
         password: faker.internet.password(),
       });
 
-      expect(authService.signIn).toHaveBeenCalledWith(1, expect.any(String));
+      expect(authService.signIn).toHaveBeenCalledWith(
+        email,
+        expect.any(String),
+      );
       expect(signIn).toEqual({ access_token: generatedRandomToken });
     });
   });

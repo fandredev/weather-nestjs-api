@@ -63,7 +63,7 @@ describe(`${UsersService.name}`, () => {
   });
 
   describe(`Get Especific User`, () => {
-    it(`should get a user successfully when #${UsersService.prototype.findOne.name} method when mock returns a user`, async () => {
+    it(`should get a user successfully when #${UsersService.prototype.findOneById.name} method when mock returns a user`, async () => {
       const userId = 1;
 
       const user: User = {
@@ -76,7 +76,7 @@ describe(`${UsersService.name}`, () => {
       };
 
       jest.spyOn(prismaService.user, 'findUnique').mockResolvedValue(user);
-      const result = await service.findOne(userId);
+      const result = await service.findOneById(userId);
 
       expect(result).toEqual(user);
       expect(prismaService.user.findUnique).toHaveBeenCalledWith({
@@ -84,11 +84,11 @@ describe(`${UsersService.name}`, () => {
       });
     });
 
-    it(`should throw an error when #${UsersService.prototype.findOne.name} method is called and user does not exist`, async () => {
+    it(`should throw an error when #${UsersService.prototype.findOneById.name} method is called and user does not exist`, async () => {
       const userId = 1;
       jest.spyOn(prismaService.user, 'findUnique').mockResolvedValue(null);
 
-      await expect(service.findOne(userId)).rejects.toThrow(
+      await expect(service.findOneById(userId)).rejects.toThrow(
         'Usuário não encontrado',
       );
       expect(prismaService.user.findUnique).toHaveBeenCalledWith({

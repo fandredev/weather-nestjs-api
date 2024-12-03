@@ -35,7 +35,8 @@ describe(`${AuthService.name}`, () => {
         {
           provide: UsersService,
           useValue: {
-            findOne: jest.fn(),
+            findOneById: jest.fn(),
+            findOneByEmail: jest.fn(),
           },
         },
       ],
@@ -58,13 +59,13 @@ describe(`${AuthService.name}`, () => {
     it('should return a jwt access token when user in database is EQUAL to user received', () => {
       const generatedRandomToken = generateRandomToken();
 
-      jest.spyOn(usersService, 'findOne').mockResolvedValue(userMocked);
+      jest.spyOn(usersService, 'findOneById').mockResolvedValue(userMocked);
       jest
         .spyOn(authJwtService, 'signAsync')
         .mockResolvedValue(generatedRandomToken);
 
       const accessToken = authService.signIn(
-        userMocked.id,
+        userMocked.email,
         userMocked.password,
       );
 
@@ -74,12 +75,10 @@ describe(`${AuthService.name}`, () => {
     });
 
     it('should return a error when user in database is NOT equal to user received', async () => {
-      jest.spyOn(usersService, 'findOne').mockResolvedValue(userMocked);
+      jest.spyOn(usersService, 'findOneById').mockResolvedValue(userMocked);
 
       const signInError = authService.signIn(
-        faker.number.int({
-          min: 2,
-        }),
+        faker.internet.email(),
         'random-password_NEVER_generated',
       );
 

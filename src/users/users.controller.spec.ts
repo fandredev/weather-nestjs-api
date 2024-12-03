@@ -22,9 +22,8 @@ describe(`${UsersController.name}`, () => {
         {
           provide: UsersService,
           useValue: {
-            createUser: jest.fn(),
             findUsers: jest.fn(),
-            findOne: jest.fn(),
+            findOneById: jest.fn(),
           },
         },
       ],
@@ -69,7 +68,7 @@ describe(`${UsersController.name}`, () => {
     expect(usersService.findUsers).toHaveBeenCalled();
   });
 
-  it(`should call #${UsersService.prototype.findOne.name} method when route is called`, async () => {
+  it(`should call #${UsersService.prototype.findOneById.name} method when route is called`, async () => {
     const user: User = {
       id: 1,
       email: faker.internet.email(),
@@ -79,10 +78,10 @@ describe(`${UsersController.name}`, () => {
       updatedAt: new Date(),
     };
 
-    jest.spyOn(usersService, 'findOne').mockResolvedValue(user);
+    jest.spyOn(usersService, 'findOneById').mockResolvedValue(user);
     const getUserResult = await controller.findOne(user.id);
 
     expect(getUserResult).toEqual(user);
-    expect(usersService.findOne).toHaveBeenCalledWith(user.id);
+    expect(usersService.findOneById).toHaveBeenCalledWith(user.id);
   });
 });

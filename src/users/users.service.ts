@@ -9,7 +9,7 @@ export class UsersService {
     return await this.prismaService.user.findMany();
   }
 
-  async findOne(id: number) {
+  async findOneById(id: number) {
     const existsUsers = await this.prismaService.user.findUnique({
       where: {
         id: id,
@@ -21,5 +21,19 @@ export class UsersService {
     }
 
     return existsUsers;
+  }
+
+  async findOneByEmail(email: string) {
+    const existsUsers = await this.prismaService.user.findUnique({
+      where: {
+        email: email,
+      },
+    });
+
+    if (!existsUsers) {
+      throw new BadRequestException('Usuário não encontrado');
+    }
+
+    return existsUsers.id;
   }
 }
