@@ -33,4 +33,4 @@ jobs:
         run: yarn run test
 
       - name: Run coverage
-        run: yarn run test:cov
+        run: yarn run test:cov --verbose

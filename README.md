@@ -51,7 +51,7 @@
    ## Execute esse Comando:
 
    ```
-      export DATABASE_URL="file:./dev.db" && npm run start:dev
+   export DATABASE_URL="file:./dev.db" && npm run start:dev
    ```
 
 ## Para ligar o servidor de desenvolvimento
