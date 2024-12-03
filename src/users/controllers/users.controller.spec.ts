@@ -1,10 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UsersController } from './users.controller';
-import { UsersService } from './users.service';
+import { UsersService } from '../services/users.service';
 import { PrismaService } from 'src/prisma.service';
 import { User } from '@prisma/client';
 import { faker } from '@faker-js/faker/.';
 import { AuthGuard } from 'src/auth/auth.guard';
+import { UsersController } from './users.controller';
 
 describe(`${UsersController.name}`, () => {
   let controller: UsersController;

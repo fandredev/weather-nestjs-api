@@ -6,7 +6,7 @@ import {
   ParseIntPipe,
   UseGuards,
 } from '@nestjs/common';
-import { UsersService } from './users.service';
+import { UsersService } from '../services/users.service';
 import {
   ApiBearerAuth,
   ApiOperation,
