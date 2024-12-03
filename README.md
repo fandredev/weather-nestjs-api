@@ -22,9 +22,11 @@
 
    - `DATABASE_URL`: Caminho do banco de dados SQLite. Use o valor padrão `file:./dev.db`.
    - `APP_PORT`: Porta na qual a aplicação será executada. Exemplo: `3000`.
-   - `JWT_SECRET`: Segredo do token JWT`.
-   - `JWT_EXPIRES_IN`: Dias de expiração do token JWT`.
-   - `NODE_ENV`: Ambiente na qual você está executando o código`.
+   - `JWT_SECRET`: Segredo do token JWT.
+   - `JWT_EXPIRES_IN`: Dias de expiração do token JWT.
+   - `NODE_ENV`: Ambiente na qual você está executando o código.
+   - `OPEN_WEATHER_API_KEY`: API_KEY da OpenWeatherAPI.
+   - `OPEN_WEATHER_API_BASE_URL`: URL base da OpenWeatherAPI.
 
 3. Instale as dependências (Usei o yarn, mas, sinta-se livre para usar o npm):
 

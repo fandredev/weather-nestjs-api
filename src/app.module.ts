@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { WeatherModule } from './weather/weather.module';
 import envConfiguration from './config/env-configuration';
 import * as Joi from 'joi';
 
@@ -24,10 +25,17 @@ import * as Joi from 'joi';
         DATABASE_URL: Joi.string().required().description('Database URL'),
         JWT_SECRET: Joi.string().required().description('JWT Secret'),
         JWT_EXPIRES_IN: Joi.string().optional().description('JWT Expires In'),
+        OPEN_WEATHER_API_KEY: Joi.string()
+          .required()
+          .description('Open Weather API Key'),
+        OPEN_WEATHER_API_BASE_URL: Joi.string()
+          .required()
+          .description('Open Weather API Base URL'),
       }),
     }),
     UsersModule,
     AuthModule,
+    WeatherModule,
   ],
 })
 export class AppModule {}
