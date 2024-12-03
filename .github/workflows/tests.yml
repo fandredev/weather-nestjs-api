@@ -15,11 +15,19 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-        node-version: [20]
+        node-version: [18, 20]
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.yarn-cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
@@ -30,7 +38,13 @@ jobs:
         run: yarn install
 
       - name: Run Tests
-        run: yarn run test
+        run: yarn run test --verbose
 
       - name: Run coverage
         run: yarn run test:cov --verbose
+
+      - name: Upload Coverage Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: coverage/
