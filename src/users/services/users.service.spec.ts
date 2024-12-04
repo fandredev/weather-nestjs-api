@@ -95,5 +95,39 @@ describe(`${UsersService.name}`, () => {
         where: { id: userId },
       });
     });
+
+    it(`should get a user successfully when #${UsersService.prototype.findOneByEmail.name} method when mock returns a user`, async () => {
+      const userEmail = faker.internet.email();
+      const userId = 1;
+
+      const user: User = {
+        id: userId,
+        email: userEmail,
+        name: faker.person.firstName(),
+        password: faker.internet.password(),
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
+
+      jest.spyOn(prismaService.user, 'findUnique').mockResolvedValue(user);
+      const result = await service.findOneByEmail(userEmail);
+
+      expect(result).toEqual(userId);
+      expect(prismaService.user.findUnique).toHaveBeenCalledWith({
+        where: { email: userEmail },
+      });
+    });
+
+    it(`should throw an error when #${UsersService.prototype.findOneByEmail.name} method is called and user does not exist`, async () => {
+      const userEmail = faker.internet.email();
+      jest.spyOn(prismaService.user, 'findUnique').mockResolvedValue(null);
+
+      await expect(service.findOneByEmail(userEmail)).rejects.toThrow(
+        'Usuário não encontrado',
+      );
+      expect(prismaService.user.findUnique).toHaveBeenCalledWith({
+        where: { email: userEmail },
+      });
+    });
   });
 });
