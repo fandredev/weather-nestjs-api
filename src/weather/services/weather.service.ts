@@ -65,7 +65,7 @@ export class WeatherService {
     const { data } = await firstValueFrom(
       this.httpService
         .get(
-          `${this.baseUrl}/data/2.5/weather?lat=${lat}&lon=${long}&appid=${this.apiKey}`,
+          `${this.baseUrl}/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&appid=${this.apiKey}&lang=pt_br`,
         )
         .pipe(
           catchError((error: AxiosError) => {

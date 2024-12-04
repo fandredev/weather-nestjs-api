@@ -6,6 +6,8 @@ import { WeatherModule } from './weather/weather.module';
 import * as Joi from 'joi';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
+import { ScheduleModule } from '@nestjs/schedule';
+import { BrazilCapitalAlertModule } from './cron/brazil-capital-alert.module';
 
 @Module({
   imports: [
@@ -43,6 +45,8 @@ import { APP_GUARD } from '@nestjs/core';
         blockDuration: 5000,
       },
     ]),
+    ScheduleModule.forRoot(),
+    BrazilCapitalAlertModule,
   ],
   providers: [
     {
